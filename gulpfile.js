@@ -13,6 +13,7 @@ import svgo from "gulp-svgmin";
 import svgstore from "gulp-svgstore";
 import { deleteAsync } from "del";
 import browser from "browser-sync";
+import ghPages from "gulp-gh-pages";
 
 // Styles
 
@@ -135,6 +136,12 @@ const reload = (done) => {
   browser.reload();
   done();
 };
+
+// Deploy
+
+gulp.task("deploy", function () {
+  return gulp.src("./build/**/*").pipe(ghPages());
+});
 
 // Watcher
 
